@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card" *ngIf="!isUpdate">
+        <h1>Add Company Details</h1>
+                
+                <form [formGroup]="companyForm" (ngSubmit)="submitForm()">
+                    <div class="form-group">
+                        <input formControlName="companyCode" name="companyCode" class="form-control" type="number" placeholder="Enter Company CODE" required>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="companyName" name="companyName" class="form-control" type="text" placeholder="Enter Company Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="companyCEO" name="companyCEO" class="form-control" type="text" placeholder="Enter companyCEO" required>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="companyTurnover" name="companyTurnover" class="form-control" type="number" placeholder="Enter companyTurnover" required>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="companyWebsite" name="companyWebsite" class="form-control" type="text" placeholder="Enter companyWebsite" required>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="stockExchange" name="stockExchange" class="form-control" type="text" placeholder="Enter stockExchange" required>
+                    </div>
+                    <!-- <div class="form-group">
+                        <input name="stockPrice" class="form-control" type="text" placeholder="Enter stockPrice" required>
+                    </div> -->
+                    <button class="btn btn-success" type="submit" style="margin-left:25%;" >Add Details</button>
+                </form><!-- Add other form fields as needed -->
+       
+    </div>
+    <div class="card" >
+        <h1>Update Company Details</h1>
+                
+                <form [formGroup]="companyForm" (ngSubmit)="updateForm()">
+                    <div class="form-group">
+                        <input formControlName="companyCode" name="companyCode" class="form-control" type="number" placeholder="Enter Company CODE"  [disabled]="isUpdate">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="companyName" name="companyName" class="form-control" type="text" placeholder="Enter Company Name" [disabled]="isUpdate">
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="companyCEO" [value]="selectedCompany?.companyCEO" name="companyCEO" class="form-control" type="text" placeholder="Enter companyCEO" required>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="companyTurnover" name="companyTurnover" class="form-control" type="number" placeholder="Enter companyTurnover" required>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="companyWebsite" name="companyWebsite" class="form-control" type="text" placeholder="Enter companyWebsite" required>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="stockExchange" name="stockExchange" class="form-control" type="text" placeholder="Enter stockExchange" required>
+                    </div>
+                    <!-- <div class="form-group">
+                        <input name="stockPrice" class="form-control" type="text" placeholder="Enter stockPrice" required>
+                    </div> -->
+                    <button class="btn btn-warning" type="submit" style="margin-left:22%;" >Update Details</button>
+                </form><!-- Add other form fields as needed -->
+       
+    </div>
+    <div class="card">
+        <h1>View All Companies</h1>
+        <button class="btn btn-info loginbtn" (click)="getAllCompanies()">Get All Company</button>
+        <div class="input-group mb-3"><br>
+                
+            <div class="input-group-append align-items-center">
+                <input type="text" [(ngModel)]="searchText"  class="form-control fa-search" placeholder="Search" >
+                <!-- <span class="input-group-text"><i class="fa fa-search"></i></span> -->
+            </div>
+        </div>
+        <br>
+        <table class="table table-striped">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>COMPANY CODE</th>
+                    <th>COMPANY NAME</th>
+                    <th>CEO</th>
+                    <th>TURNOVER</th>
+                    <th>WEBSITE</th>
+                    <th>STOCK EXCHANGE</th>
+                    <th>LATEST STOCK PRICE</th>
+                    <th>ACTION</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let c of companies | filter:searchText">
+                    <td><a (click)="goToCompanyInfo(c.companyCode)" style="cursor: pointer;">{{c.companyCode}}</a></td>
+                    <td>{{ c.companyName }}</td>
+                    <td>{{ c.companyCEO }}</td>
+                    <td>{{ c.companyTurnover }}</td>
+                    <td>{{ c.companyWebsite }}</td>
+                    <td>{{ c.stockExchange }}</td>
+                    <td>{{ c.latestStockPrice.price }}</td>
+            
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteCompany(c.companyCode)">Delete</button>
+                        <button class="btn btn-warning" >Update</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </table>
+    </div>
+    
+
+ 
+</div>
+
+</body>
+</html>

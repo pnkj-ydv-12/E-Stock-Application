@@ -1,0 +1,55 @@
+<div class="container center">
+    <div style="margin-top: 90PX;" class="card">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <h2 class="form-title">Register</h2>
+        <p class="form-subtitle">Please fill in this form to create an account.</p>
+  
+        <div class="form-group">
+          <label for="username">User Name</label>
+          <input formControlName="username" type="text" placeholder="Enter User Name" id="username" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="firstname">First Name</label>
+          <input formControlName="firstname" type="text" placeholder="Enter First Name" id="firstname" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="lastname">Last Name</label>
+          <input formControlName="lastname" type="text" placeholder="Enter Last Name" id="lastname" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input formControlName="email" type="email" placeholder="Enter Email" id="email" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input formControlName="password" type="password" placeholder="Enter Password" id="password" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="contact">Contact</label>
+          <input formControlName="contact" type="number" placeholder="Enter Contact" id="contact" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="role">Role</label>
+          <select formControlName="role" id="role" required>
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+  
+        <div class="form-group">
+          <button type="submit" class="btn">Register</button>
+        </div>
+      </form>
+  
+      <div class="alternative">
+        <p>Already have an account? <a routerLink="/login">Sign in</a>.</p>
+      </div>
+    </div>
+  </div>
+  

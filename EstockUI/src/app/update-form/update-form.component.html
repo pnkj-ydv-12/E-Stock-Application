@@ -1,0 +1,30 @@
+<!-- update-company-form.component.html -->
+<div>
+    <h2>Update Company</h2>
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+        
+            <div class="form-group">
+                <input formControlName="companyName" name="companyName" class="form-control" type="text" placeholder="Enter Company Name" required>
+            </div>
+            <div class="form-group">
+                <input formControlName="companyCEO" name="companyCEO" class="form-control" type="text" placeholder="Enter companyCEO" required>
+            </div>
+            <div class="form-group">
+                <input formControlName="companyTurnover" name="companyTurnover" class="form-control" type="number" placeholder="Enter companyTurnover" required>
+            </div>
+            <div class="form-group">
+                <input formControlName="companyWebsite" name="companyWebsite" class="form-control" type="text" placeholder="Enter companyWebsite" required>
+            </div>
+            <div class="form-group">
+                <input formControlName="stockExchange" name="stockExchange" class="form-control" type="text" placeholder="Enter stockExchange" required>
+            </div>
+            <!-- <div class="form-group">
+                <input name="stockPrice" class="form-control" type="text" placeholder="Enter stockPrice" required>
+            </div> -->
+            <button class="btn btn-success" type="submit" >Add Details</button>
+        
+  
+      <button type="button" (click)="onCancel()">Cancel</button>
+      <button type="submit">Update</button>
+    </form>
+  </div>

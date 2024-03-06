@@ -1,0 +1,14 @@
+
+
+<div class="user-navbar">
+    <img src="https://freepngimg.com/thumb/categories/1427.png" alt="Stock Market">
+    <div>
+        <a routerLink="/dashboard" *ngIf="!isAdminLoggedIn() || userRole === 'admin'">Home</a>
+        <a routerLink="/company" *ngIf="!isAdminLoggedIn() || userRole === 'admin'">Company Management</a>
+        <a routerLink="/stock" *ngIf="!isAdminLoggedIn() || userRole === 'admin'">Stock Management</a>
+        <a routerLink="/login" *ngIf="!isAdminLoggedIn()">Login</a>
+        <a routerLink="/register" *ngIf="!isAdminLoggedIn()">Sign Up</a>
+        <!-- <a *ngIf="isAdminLoggedIn() || userRole === 'admin'" (click)="logout()">Logout</a> -->
+    </div>
+</div>
+

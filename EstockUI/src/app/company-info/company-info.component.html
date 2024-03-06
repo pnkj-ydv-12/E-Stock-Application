@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            /* background-image: url('https://img.freepik.com/free-vector/gradient-stock-market-concept_23-2149166910.jpg'); */
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', sans-serif;
+            color: rgb(255, 255, 255);
+            background-color: #0000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            height: 100vh;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            margin-top:5%;
+            border-radius: 15px;
+            border-left: 5px solid #04AA6D;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin-bottom: 20px;
+            background-color: rgb(85, 167, 170);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            width: 45%; /* Adjust the width of the card */
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            margin-top: 10px;
+        }
+
+        .loginbtn {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            cursor: pointer;
+            opacity: 0.9;
+            transition: opacity 0.3s ease-in-out;
+            margin-top: 10px;
+            padding: 10px 20px;
+        }
+
+        .loginbtn:hover {
+            opacity: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            border-radius: 0.25rem;
+            border: 1px solid #ced4da;
+            padding: 0.375rem 0.75rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .form-control:focus {
+            color: #495057;
+            background-color: #fff;
+            border-color: #80bdff;
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            /* color: #000000; */
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #04AA6D;
+            color: white;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .pagination button {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            margin: 0 4px;
+            cursor: pointer;
+        }
+
+        .pagination button:hover {
+            background-color: #027c50;
+        }
+        .btn{
+            background-color: #04AA6D;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h1>Company Details</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="companyCode">Company Code:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyName">Company Name:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyTurnover">Company Turnover:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="companyWebsite">Company Website:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="stockExchange">Company Stock Exchange:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="latestStockPrice">Latest Stock Price:</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>{{ companyDetails?.companyCode }}</div><br>
+                    <div>{{ companyDetails?.companyName }}</div><br>
+                    <div>{{ companyDetails?.companyTurnover }}</div><br>
+                    <div>{{ companyDetails?.companyWebsite }}</div><br>
+                    <div>{{ companyDetails?.stockExchange }}</div><br><br>
+                    <div>{{ companyDetails?.latestStockPrice }}</div>
+                </div>
+            </div>
+        </div>
+    
+    <div class="card">
+        <h1>Stock Transactions</h1>
+        <div class="form-group">
+            <label for="filter">Filter:</label>
+            <input id="filter" class="form-control" type="number" [(ngModel)]="priceFilter" (input)="filterTableByPrice()">
+            
+          </div>
+        
+          <div class="form-group">
+            <label for="dateRange">Enter a Date Range:</label>
+            <input id="startDate" class="form-control" type="date" placeholder="Start Date" [(ngModel)]="startDate">
+            <input id="endDate" class="form-control" type="date" placeholder="End Date" [(ngModel)]="endDate">
+            <button class="btn btn-secondary" (click)="filterTableByDateRange()">Apply Date Range</button>
+          </div>
+        
+        <button class="btn btn-secondary" (click)="clearFilter()">Clear Filter</button>
+        
+
+            <!-- ... your existing code ... -->
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Stock Transaction ID</th>
+                    <th>Stock Creation Date</th>
+                    <th>Stock Price</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="!isFilterApplied; else filteredTable">
+                <!-- Show the original table when no filter is applied -->
+                <tr *ngFor="let transaction of stockTransactions">
+                    <td>{{ transaction.id }}</td>
+                    <td>{{ transaction.timeStamp }}</td>
+                    <td>{{ transaction.price }}</td>
+                </tr>
+                </tbody>
+                <ng-template #filteredTable>
+                <!-- Show the filtered table when a filter is applied -->
+                <tr *ngFor="let transaction of filteredTransactions">
+                    <td>{{ transaction.id }}</td>
+                    <td>{{ transaction.timeStamp }}</td>
+                    <td>{{ transaction.price }}</td>
+                </tr>
+                </ng-template>
+            </table>
+  
+  <!-- ... your existing code ... -->
+  
+
+
+
+
+        <div class="pagination">
+            <button>1</button>
+            <!-- <button>2</button> -->
+            <!-- Add more buttons as needed -->
+        </div>
+        <div>
+            <p>Maximum Stock Price: {{ maxStockPrice !== null ? maxStockPrice : 'N/A' }}</p>
+            <p>Minimum Stock Price: {{ minStockPrice !== null ? minStockPrice : 'N/A' }}</p>
+            <p>Average Stock Price: {{ avgStockPrice !== null ? avgStockPrice.toFixed(2) : 'N/A' }}</p>
+          </div>
+    </div>
+   
+    
+</div><br><br><br>
+
+
+
+</body>
+</html>

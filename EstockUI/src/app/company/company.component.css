@@ -1,0 +1,76 @@
+body {
+    margin: 0;
+    padding: 0;
+    /* background-image: url('https://m.economictimes.com/thumb/msid-103027118,width-1200,height-1200,resizemode-4,imgsize-56500/tech-view-nifty-may-break-below-18300-in-near-term-what-traders-should-do-on-friday.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif; */
+    color: rgb(70, 17, 17);
+    /* background-image: url('https://m.economictimes.com/thumb/msid-103027118,width-1200,height-1200,resizemode-4,imgsize-56500/tech-view-nifty-may-break-below-18300-in-near-term-what-traders-should-do-on-friday.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+    color: rgb(70, 17, 17); */
+}
+
+.container {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-wrap: wrap;
+}
+
+.card {
+    border-radius: 15px;
+    border-left: 5px solid #04AA6D;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 20px;
+    background-color: rgb(85, 167, 170);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 80%; /* Adjust the width of the card */
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+h1 {
+    margin-top: 10px;
+}
+
+.loginbtn {
+    background-color: #04AA6D;
+    color: white;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: opacity 0.3s ease-in-out;
+    margin-top: 10px;
+    padding: 10px 20px;
+}
+
+.loginbtn:hover {
+    opacity: 1;
+}
+.input-group-text {
+    height: calc(1.5em + .75rem + 2px); /* This is the default height of the Bootstrap 4 form-control element */
+}
+.card1 {
+    border-radius: 15px;
+    border-left: 5px solid #04AA6D;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 20px;
+    background-color: rgb(175, 29, 155);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 80%; /* Adjust the width of the card */
+}
